@@ -22,6 +22,12 @@ COPY . .
 # Create necessary directories
 RUN mkdir -p /tmp/autoposter/temp /tmp/autoposter/output /tmp/autoposter/download
 
+# Set environment variables
+ENV ASSETS_BUCKET=marketing-automation-static
+ENV LONG_VIDEOS_BUCKET=longs-clips
+ENV SHORTS_REELS_BUCKET=shorts-clips
+ENV CONFIG_BUCKET=marketing-automation-static
+
 # Expose port
 EXPOSE 8080
 
