@@ -3,10 +3,7 @@ runtime: python3
 build:
   commands:
     pre-build:
-      - echo "Installing system dependencies..."
-      - apt-get update -y
-      - apt-get install -y ffmpeg libsm6 libxext6
-      - echo "FFmpeg version:" && ffmpeg -version | head -n 1
+      - echo "Setting up environment..."
       - mkdir -p /tmp/autoposter/temp /tmp/autoposter/output /tmp/autoposter/download
       - echo "Pre-build completed successfully"
     build:
