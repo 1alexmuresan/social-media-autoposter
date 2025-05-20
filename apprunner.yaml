@@ -1,0 +1,30 @@
+version: 1.0
+runtime: python3
+build:
+  commands:
+    pre-build:
+      - echo "Installing system dependencies..."
+      - apt-get update -y
+      - apt-get install -y ffmpeg libsm6 libxext6
+      - echo "FFmpeg version:" && ffmpeg -version | head -n 1
+      - mkdir -p /tmp/autoposter/temp /tmp/autoposter/output /tmp/autoposter/download
+      - echo "Pre-build completed successfully"
+    build:
+      - pip install -r requirements.txt
+  env:
+    - name: PYTHONUNBUFFERED
+      value: "1"
+run:
+  runtime-version: 3.9
+  command: gunicorn --bind 0.0.0.0:8080 app:app
+  network:
+    port: 8080
+  env:
+    - name: ASSETS_BUCKET
+      value: "marketing-automation-static"
+    - name: LONG_VIDEOS_BUCKET
+      value: "longs-clips"
+    - name: SHORTS_REELS_BUCKET
+      value: "shorts-clips"
+    - name: CONFIG_BUCKET
+      value: "marketing-automation-static"
