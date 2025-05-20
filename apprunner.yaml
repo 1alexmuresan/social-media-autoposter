@@ -15,7 +15,6 @@ build:
     - name: PYTHONUNBUFFERED
       value: "1"
 run:
-  runtime-version: 3.9
   command: gunicorn --bind 0.0.0.0:8080 app:app
   network:
     port: 8080
